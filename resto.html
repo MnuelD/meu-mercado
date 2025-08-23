@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Mercado - Plataforma Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6A00;
+            --secondary: #0052CC;
+            --dark: #333333;
+            --light: #F5F5F5;
+            --gray: #999999;
+            --success: #00A854;
+            --warning: #FFC107;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: var(--dark);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            font-size: 0.85rem;
+            padding: 5px 0;
+        }
+        
+        .top-bar a {
+            color: #DDD;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+        
+        .top-bar a:hover {
+            color: white;
+        }
+        
+        /* Header */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary) !important;
+            font-size: 1.8rem;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 3px;
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-icon .count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #F8F8F8;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
+        }
+        
+        /* Cart Styles */
+        .cart-item {
+            border: 1px solid #EEE;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .cart-summary {
+            background-color: #F9F9F9;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-top: 1px solid #EEE;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Delivery Selection */
+        .delivery-option {
+            border: 1px solid #EEE;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .delivery-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .delivery-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(255, 106, 0, 0.05);
+        }
+        
+        .delivery-type-badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        /* Registration Styles */
+        .registration-card {
+            border: 1px solid #EEE;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .registration-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .registration-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Checkout Success */
+        .success-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .order-tracking {
+            background-color: #F9F9F9;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tracking-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .tracking-number {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <a href="#"><i class="fas fa-headset me-1"></i> Suporte</a>
+                    <a href="#"><i class="fas fa-question-circle me-1"></i> Ajuda</a>
+                    <a href="#"><i class="fas fa-flag me-1"></i> Português (PT)</a>
+                </div>
+                <div>
+                    <a href="#">Fornecedor</a>
+                    <a href="#">Criar conta</a>
+                    <a href="#">Entrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a class="navbar-brand" href="#">
+                        <i class="fas fa-store me-1"></i>MeuMercado
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-5 d-none d-md-block">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="O que você está procurando?">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-6">
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-comments"></i>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                            <span class="count">3</span>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="count">5</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Carrinho</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Selecionar Entrega</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <h2 class="mb-4">Selecionar Método de Entrega</h2>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <h4>Escolha como deseja receber seu pedido</h4>
+                    <p class="text-muted">Selecione uma das opções de entrega disponíveis para sua região</p>
+                </div>
+                
+                <!-- Entrega Padrão -->
+                <div class="delivery-option selected">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="option1" checked>
+                        <label class="form-check-label w-100" for="option1">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>Entrega Padrão</h5>
+                                    <p class="mb-1">Entrega em domicílio pelos nossos parceiros</p>
+                                    <p class="mb-1 text-muted">Entrega em 3-5 dias úteis</p>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold">R$ 15,90</div>
+                                    <span class="delivery-type-badge">Recomendado</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Entrega Expressa -->
+                <div class="delivery-option">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="option2">
+                        <label class="form-check-label w-100" for="option2">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>Entrega Expressa</h5>
+                                    <p class="mb-1">Entregador particular para entrega rápida</p>
+                                    <p class="mb-1 text-muted">Entrega em 1-2 dias úteis</p>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold">R$ 29,90</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Retirada no Local -->
+                <div class="delivery-option">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="deliveryOption" id="option3">
+                        <label class="form-check-label w-100" for="option3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>Retirada no Mercado</h5>
+                                    <p class="mb-1">Retire seu pedido diretamente no mercado</p>
+                                    <p class="mb-1 text-muted">Disponível a partir de amanhã</p>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold">Grátis</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Empresas de Entrega -->
+                <h4 class="mt-5 mb-3">Empresas de Entrega Parceiras</h4>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="delivery-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryOption" id="option4">
+                                <label class="form-check-label w-100" for="option4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Entregador Júnior</h5>
+                                            <p class="mb-1 text-muted">Entregador particular</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="fw-bold">R$ 12,90</div>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="delivery-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryOption" id="option5">
+                                <label class="form-check-label w-100" for="option5">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>LogiFast</h5>
+                                            <p class="mb-1 text-muted">Empresa de logística</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="fw-bold">R$ 18,90</div>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="delivery-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryOption" id="option6">
+                                <label class="form-check-label w-100" for="option6">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Rápido Entregas</h5>
+                                            <p class="mb-1 text-muted">Entregador particular</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="fw-bold">R$ 14,50</div>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <div class="delivery-option">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="deliveryOption" id="option7">
+                                <label class="form-check-label w-100" for="option7">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Total Express</h5>
+                                            <p class="mb-1 text-muted">Empresa de logística</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="fw-bold">R$ 22,90</div>
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="carrinho.html" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Voltar ao Carrinho
+                    </a>
+                    <a href="pagamento.html" class="btn btn-primary">
+                        Continuar para Pagamento<i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h4 class="mb-4">Resumo do Pedido</h4>
+                    
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span>R$ 147,80</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Frete</span>
+                        <span>R$ 15,90</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Desconto</span>
+                        <span class="text-success">-R$ 12,50</span>
+                    </div>
+                    
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span>R$ 151,20</span>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5>Itens do Pedido</h5>
+                        
+                        <div class="d-flex mt-3">
+                            <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Maçãs" class="cart-item-image me-3">
+                            <div>
+                                <h6>Maçãs Vermelhas Premium</h6>
+                                <p class="mb-0">2 x R$ 24,90</p>
+                                <small class="text-muted">Qtd: 2 caixas</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mt-3">
+                            <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Bananas" class="cart-item-image me-3">
+                            <div>
+                                <h6>Bananas Nanicas</h6>
+                                <p class="mb-0">3 x R$ 18,50</p>
+                                <small class="text-muted">Qtd: 3 cachos</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mt-3">
+                            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Laranjas" class="cart-item-image me-3">
+                            <div>
+                                <h6>Laranjas Pera</h6>
+                                <p class="mb-0">1 x R$ 32,90</p>
+                                <small class="text-muted">Qtd: 1 saco</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Section -->
+    <div class="container mt-5 py-5 border-top">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>Quer fazer parte do MeuMercado?</h2>
+                <p class="lead">Escolha como deseja participar da nossa plataforma</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-4 mb-4">
+                        <div class="registration-card">
+                            <div class="registration-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4>Vendedor</h4>
+                            <p>Cadastre seus produtos e venda para todo o Brasil através da nossa plataforma.</p>
+                            <a href="cadastro-vendedor.html" class="btn btn-outline-primary mt-3">Cadastrar como Vendedor</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="registration-card">
+                            <div class="registration-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h4>Entregador</h4>
+                            <p>Seja um entregador parceiro e ganhe dinheiro fazendo entregas para nossa plataforma.</p>
+                            <a href="cadastro-entregador.html" class="btn btn-outline-primary mt-3">Cadastrar como Entregador</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="registration-card">
+                            <div class="registration-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Comprador</h4>
+                            <p>Crie sua conta para comprar produtos diretamente de mercados e feirantes.</p>
+                            <a href="cadastro-comprador.html" class="btn btn-primary mt-3">Criar Conta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Success Section (Hidden by default - would be shown after payment) -->
+    <div class="container mt-5 py-5 border-top" style="display: none;" id="successSection">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Pedido Realizado com Sucesso!</h2>
+                <p class="lead">Seu pedido foi confirmado e já está sendo processado.</p>
+                
+                <div class="order-tracking">
+                    <h4 class="mb-4">Acompanhe seu Pedido</h4>
+                    
+                    <div class="tracking-step">
+                        <div class="tracking-number">#ORD123456</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Número do Pedido</h5>
+                            <p class="mb-0 text-muted">Use este número para acompanhar sua entrega</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-step">
+                        <i class="fas fa-check-circle text-success fa-2x"></i>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Pedido Confirmado</h5>
+                            <p class="mb-0 text-muted">Seu pedido foi recebido pelo vendedor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-step">
+                        <i class="fas fa-people-carry text-muted fa-2x"></i>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Preparando Envio</h5>
+                            <p class="mb-0 text-muted">Seu pedido está sendo preparado para envio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-step">
+                        <i class="fas fa-shipping-fast text-muted fa-2x"></i>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Em Trânsito</h5>
+                            <p class="mb-0 text-muted">Seu pedido saiu para entrega</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-step">
+                        <i class="fas fa-home text-muted fa-2x"></i>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Entregue</h5>
+                            <p class="mb-0 text-muted">Seu pedido foi entregue</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <p>Enviaremos atualizações por e-mail e WhatsApp. Previsão de entrega: <strong>3-5 dias úteis</strong></p>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fas fa-download me-2"></i>Baixar Recibo
+                        </a>
+                        <a href="index.html" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag me-2"></i>Continuar Comprando
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para funcionalidades da página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleção de opção de entrega
+            const deliveryOptions = document.querySelectorAll('.delivery-option');
+            deliveryOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    deliveryOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+            
+            // Simulação de finalização de compra (apenas para demonstração)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                document.getElementById('successSection').style.display = 'block';
+                document.querySelector('.main-content').style.display = 'none';
+                document.querySelector('.breadcrumb').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

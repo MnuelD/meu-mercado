@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - MeuMercado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6A00;
+            --secondary: #0052CC;
+            --dark: #333333;
+            --light: #F5F5F5;
+            --gray: #999999;
+            --success: #00A854;
+            --warning: #FFC107;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: var(--dark);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            font-size: 0.85rem;
+            padding: 5px 0;
+        }
+        
+        .top-bar a {
+            color: #DDD;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+        
+        .top-bar a:hover {
+            color: white;
+        }
+        
+        /* Header */
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary) !important;
+            font-size: 1.8rem;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 3px;
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-icon .count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #F8F8F8;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
+        }
+        
+        /* Filter Sidebar */
+        .filter-sidebar {
+            background-color: white;
+            border: 1px solid #EEE;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        
+        .filter-group-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .filter-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .filter-list li {
+            margin-bottom: 8px;
+        }
+        
+        .filter-list a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .filter-list a:hover {
+            color: var(--primary);
+        }
+        
+        .filter-list .count {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        /* Products Grid */
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .products-sort {
+            display: flex;
+            align-items: center;
+        }
+        
+        .products-sort select {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+        }
+        
+        .product-card {
+            border: 1px solid #EEE;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        .product-min-order {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .product-supplier {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #EEE;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .btn-contact {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn-contact:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Badges */
+        .badge-trending {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+        
+        .badge-premium {
+            background-color: gold;
+            color: black;
+            padding: 3px 8px;
+            font-size: 0.7rem;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .page-link {
+            color: var(--primary);
+        }
+        
+        .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-sidebar {
+                margin-bottom: 20px;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .products-sort {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <a href="#"><i class="fas fa-headset me-1"></i> Suporte</a>
+                    <a href="#"><i class="fas fa-question-circle me-1"></i> Ajuda</a>
+                    <a href="#"><i class="fas fa-flag me-1"></i> Português (PT)</a>
+                </div>
+                <div>
+                    <a href="#">Fornecedor</a>
+                    <a href="#">Criar conta</a>
+                    <a href="#">Entrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a class="navbar-brand" href="#">
+                        <i class="fas fa-store me-1"></i>MeuMercado
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-5 d-none d-md-block">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="O que você está procurando?">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-6">
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-comments"></i>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-heart"></i>
+                            <span class="count">3</span>
+                        </a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="count">5</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Produtos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Frutas e Legumes</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <div class="col-lg-3">
+                <div class="filter-sidebar">
+                    <h3 class="filter-title">Categorias</h3>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Frutas</h4>
+                        <ul class="filter-list">
+                            <li><a href="#">Maçãs <span class="count">(128)</span></a></li>
+                            <li><a href="#">Bananas <span class="count">(95)</span></a></li>
+                            <li><a href="#">Laranjas <span class="count">(76)</span></a></li>
+                            <li><a href="#">Uvas <span class="count">(63)</span></a></li>
+                            <li><a href="#">Morangos <span class="count">(47)</span></a></li>
+                            <li><a href="#">Ver Todas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Legumes</h4>
+                        <ul class="filter-list">
+                            <li><a href="#">Tomates <span class="count">(112)</span></a></li>
+                            <li><a href="#">Cenouras <span class="count">(88)</span></a></li>
+                            <li><a href="#">Batatas <span class="count">(75)</span></a></li>
+                            <li><a href="#">Alfaces <span class="count">(59)</span></a></li>
+                            <li><a href="#">Cebolas <span class="count">(42)</span></a></li>
+                            <li><a href="#">Ver Todas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Tipo de Fornecedor</h4>
+                        <ul class="filter-list">
+                            <li><a href="#">Premium <span class="count">(256)</span></a></li>
+                            <li><a href="#">Verificado <span class="count">(189)</span></a></li>
+                            <li><a href="#">Novo Fornecedor <span class="count">(74)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Preço</h4>
+                        <ul class="filter-list">
+                            <li><a href="#">Até R$ 20,00 <span class="count">(142)</span></a></li>
+                            <li><a href="#">R$ 20,00 - R$ 50,00 <span class="count">(218)</span></a></li>
+                            <li><a href="#">R$ 50,00 - R$ 100,00 <span class="count">(135)</span></a></li>
+                            <li><a href="#">Acima de R$ 100,00 <span class="count">(67)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Avaliação</h4>
+                        <ul class="filter-list">
+                            <li><a href="#"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <span class="count">(98)</span></a></li>
+                            <li><a href="#"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> & acima <span class="count">(167)</span></a></li>
+                            <li><a href="#"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> & acima <span class="count">(243)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="col-lg-9">
+                <div class="products-header">
+                    <h2>Frutas e Legumes <small class="text-muted">(486 produtos)</small></h2>
+                    <div class="products-sort">
+                        <span>Ordenar por:</span>
+                        <select>
+                            <option>Mais relevantes</option>
+                            <option>Menor preço</option>
+                            <option>Maior preço</option>
+                            <option>Melhor avaliados</option>
+                            <option>Novidades</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Product 1 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <span class="badge-trending">Em Alta</span>
+                            <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Maçãs">
+                            <div class="product-info">
+                                <h3 class="product-title">Maçãs Vermelhas Premium</h3>
+                                <div class="product-price">R$ 24,90 / Caixa</div>
+                                <div class="product-min-order">Pedido mínimo: 10 caixas</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Frutaria do Zé
+                                    <span class="badge-premium">Premium</span>
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-dark ms-1">4.5</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Bananas">
+                            <div class="product-info">
+                                <h3 class="product-title">Bananas Nanicas</h3>
+                                <div class="product-price">R$ 18,50 / Cacho</div>
+                                <div class="product-min-order">Pedido mínimo: 20 cachos</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Produtos Rurais LTDA
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-dark ms-1">4.0</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <span class="badge-trending">Oferta</span>
+                            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Laranjas">
+                            <div class="product-info">
+                                <h3 class="product-title">Laranjas Pera Frescas</h3>
+                                <div class="product-price">R$ 32,90 / Saco</div>
+                                <div class="product-min-order">Pedido mínimo: 5 sacos</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Citrus & Cia
+                                    <span class="badge-premium">Premium</span>
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-dark ms-1">5.0</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1591768575198-88dac53fbd0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Uvas">
+                            <div class="product-info">
+                                <h3 class="product-title">Uvas Thompson Sem Sementes</h3>
+                                <div class="product-price">R$ 45,90 / Caixa</div>
+                                <div class="product-min-order">Pedido mínimo: 8 caixas</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Vinícola Serra Gaúcha
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-dark ms-1">4.5</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Morangos">
+                            <div class="product-info">
+                                <h3 class="product-title">Morangos Orgânicos</h3>
+                                <div class="product-price">R$ 38,50 / Bandeja</div>
+                                <div class="product-min-order">Pedido mínimo: 15 bandejas</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Fazenda Orgânica
+                                    <span class="badge-premium">Premium</span>
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-dark ms-1">4.0</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <span class="badge-trending">Novo</span>
+                            <img src="https://images.unsplash.com/photo-1566842600175-97dca3dfc3c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="product-image" alt="Tomates">
+                            <div class="product-info">
+                                <h3 class="product-title">Tomates Italianos</h3>
+                                <div class="product-price">R$ 28,90 / Kg</div>
+                                <div class="product-min-order">Pedido mínimo: 20 Kg</div>
+                                <div class="product-supplier">
+                                    <i class="fas fa-store me-1"></i> Hortifruti Premium
+                                </div>
+                                <div class="text-warning mb-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-dark ms-1">4.5</span>
+                                </div>
+                                <button class="btn-contact">Contactar Fornecedor</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Próximo</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para funcionalidades básicas
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de produtos carregada com sucesso!');
+            
+            // Adicionar funcionalidade aos filtros
+            const filterLinks = document.querySelectorAll('.filter-list a');
+            filterLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterLinks.forEach(l => l.parentElement.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
