@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercado30 - Dashboard Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="produtos-premium-styles.css">
+    <link rel="stylesheet" href="dashboardstyle.css">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>Meu Mercado</span>
+                </div>
+                <div class="search-container">
+                    <div class="search-box">
+                        <div class="search-categories">Todas as categorias</div>
+                        <div class="search-input">
+                            <input type="text" placeholder="O que você está procurando?">
+                        </div>
+                        <button class="search-btn">Buscar</button>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="action-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notificações</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">MC</div>
+                        <div class="user-info">
+                            <h5>Maria Compradora</h5>
+                            <p>Cliente Gold</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li>Início</li>
+                    <li>Categorias</li>
+                    <li>Ofertas</li>
+                    <li>Novidades</li>
+                    <li>Sobre Nós</li>
+                </ul>
+                <div class="nav-promo">
+                    <i class="fas fa-gift"></i> Promoções Exclusivas
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="#" id="ini"><i class="fas fa-home"></i> Início</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="#">Dashboard</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="comprador.html">Área do Comprador</a>
+                <i class="fas fa-chevron-right"></i>
+                <span id="prod" >Produtos</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="premium-page-header">
+            <div class="header-text">
+                <h1><i class="fas fa-crown" style="color: #FFD700;"></i> Catálogo de Ofertas Gold</h1>
+                <p>Produtos selecionados com descontos exclusivos e monitoramento em tempo real.</p>
+            </div>
+        </div>
+
+        <div class="premium-product-grid">
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag">Oferta Gold</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=MacBook+Pro" alt="Produto">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav-active" title="Favoritar"><i class="fas fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('MacBook Pro')" title="Criar Alerta"><i
+                                class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Eletrónicos</div>
+                    <h3 class="p-name">MacBook Pro M3 - 14 Polegadas</h3>
+                    <div class="p-price-area">
+                        <span class="p-old-price">1.850.000 Kz</span>
+                        <span class="p-current-price">1.450.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag low-stock">Apenas 3 Restantes</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=PlayStation+5" alt="Produto">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav" title="Favoritar"><i class="far fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('Consola PlayStation 5 + 2 Comandos')" title="Criar Alerta"><i class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Gaming</div>
+                    <h3 class="p-name">Consola PlayStation 5 + 2 Comandos</h3>
+                    <div class="p-price-area">
+                        <span class="p-current-price">520.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-shield-alt"></i> Garantia Gold</span>
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag">Lançamento Gold</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=Cadeira+Gamer" alt="Cadeira Gamer">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav" title="Favoritar"><i class="far fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('Cadeira Gamer Pro')"
+                            title="Criar Alerta"><i class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Gaming</div>
+                    <h3 class="p-name">Cadeira Gamer Ergonómica Premium</h3>
+                    <div class="p-price-area">
+                        <span class="p-current-price">145.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-tools"></i> Montagem Grátis</span>
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                </div>
+            </div>
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag">Melhor Preço</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=Câmara+Sony" alt="Câmara">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav" title="Favoritar"><i class="far fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('Sony Alpha A7')" title="Criar Alerta"><i
+                                class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Fotografia</div>
+                    <h3 class="p-name">Câmara Sony Alpha A7 IV (Corpo)</h3>
+                    <div class="p-price-area">
+                        <span class="p-old-price">1.200.000 Kz</span>
+                        <span class="p-current-price">980.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-camera"></i> Curso de Foto Incluído</span>
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                </div>
+            </div>
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag">Stock Limitado</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=Aspirador+Robô" alt="Aspirador">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav-active" title="Favoritar"><i class="fas fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('Robô Aspirador')" title="Criar Alerta"><i
+                                class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Eletrodomésticos</div>
+                    <h3 class="p-name">Robô Aspirador Inteligente V12</h3>
+                    <div class="p-price-area">
+                        <span class="p-current-price">185.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-home"></i> Configuração Grátis</span>
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                </div>
+            </div>
+
+            <div class="premium-p-card">
+                <div class="p-image-wrapper">
+                    <span class="p-exclusive-tag">Exclusivo Gold</span>
+                    <img src="https://via.placeholder.com/250x200/FFF/FF6A00?text=Relógio+Garmin" alt="Relógio">
+                    <div class="p-hover-actions">
+                        <button class="btn-fav" title="Favoritar"><i class="far fa-heart"></i></button>
+                        <button class="btn-alert-set" onclick="openAlertModal('Garmin Fenix 7')" title="Criar Alerta"><i
+                                class="fas fa-bell"></i></button>
+                    </div>
+                </div>
+                <div class="p-info">
+                    <div class="p-category">Acessórios</div>
+                    <h3 class="p-name">Smartwatch Garmin Fenix 7 Sapphire</h3>
+                    <div class="p-price-area">
+                        <span class="p-old-price">450.000 Kz</span>
+                        <span class="p-current-price">395.000 Kz</span>
+                    </div>
+                    <div class="p-benefits">
+                        <span><i class="fas fa-heartbeat"></i> Plano Saúde 1 Mês</span>
+                        <span><i class="fas fa-coins"></i> +500 Pontos</span>
+                    </div>
+                    <button class="btn-add-cart-premium"><i class="fas fa-shopping-cart"></i> Comprar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3><i class="fas fa-bell"></i> Configurar Alerta de Preço</h3>
+            <p id="modal-product-name">Produto X</p>
+            <div class="modal-body">
+                <label>Avise-me quando o preço chegar a:</label>
+                <div class="input-group">
+                    <input type="number" placeholder="Ex: 50000">
+                    <span>Kz</span>
+                </div>
+                <div class="notification-methods">
+                    <label><input type="checkbox" checked> E-mail</label>
+                    <label><input type="checkbox"> Push Mobile</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeAlertModal()">Cancelar</button>
+                <button class="btn-primary">Ativar Alerta Premium</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Meu Mercado</h3>
+                    <p>Seu marketplace de confiança para compras online seguras e rápidas.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Úteis</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-chevron-right"></i> Sobre Nós</li>
+                        <li><i class="fas fa-chevron-right"></i> Contato</li>
+                        <li><i class="fas fa-chevron-right"></i> Política de Privacidade</li>
+                        <li><i class="fas fa-chevron-right"></i> Termos de Serviço</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categorias</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-chevron-right"></i> Eletrônicos</li>
+                        <li><i class="fas fa-chevron-right"></i> Moda</li>
+                        <li><i class="fas fa-chevron-right"></i> Casa & Decoração</li>
+                        <li><i class="fas fa-chevron-right"></i> Livros</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Inscreva-se para receber ofertas exclusivas.</p>
+                    <div class="footer-newsletter">
+                        <input type="email" placeholder="Seu email">
+                        <button class="btn btn-primary">Inscrever</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Meu Mercado. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+    </body>
+
+    <script src="premium-script.js"></script>
+
+</html>

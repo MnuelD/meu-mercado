@@ -1,0 +1,277 @@
+/* Estilos Exclusivos para o Catálogo Premium */
+:root {
+  --gold: #FFD700;
+  --gold-dark: #B8860B;
+  --premium-grad: linear-gradient(135deg, #FFD700, #FFA500);
+  --white: #FFFFFF;
+  --dark: #2D2F48;
+  --primary: #FF6A00;
+  --gray-light: #F4F7F6;
+  --shadow-premium: 0 10px 30px rgba(255, 215, 0, 0.15);
+}
+
+/* Header da Página de Produtos */
+.premium-page-header {
+    background: var(--white);
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: var(--shadow-premium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--gold);
+}
+
+.header-text h1 {
+    font-size: 24px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.header-text p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Filtros Gold */
+.gold-select {
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: 2px solid var(--gold);
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gold-select:hover {
+    background: var(--gold);
+    color: var(--dark);
+}
+
+/* Grade de Produtos */
+.premium-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+/* Card de Produto Premium */
+.premium-p-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #eee;
+}
+
+.premium-p-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-premium);
+    border-color: var(--gold);
+}
+
+/* Badge de Oferta */
+.p-exclusive-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--premium-grad);
+    color: var(--dark);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Imagem e Ações de Hover */
+.p-image-wrapper {
+    background: var(--gray-light);
+    border-radius: 15px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.p-image-wrapper img {
+    max-width: 80%;
+    transition: 0.5s;
+}
+
+.premium-p-card:hover .p-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.p-hover-actions {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.premium-p-card:hover .p-hover-actions {
+    bottom: 0;
+}
+
+.p-hover-actions button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.p-hover-actions .btn-fav-active { color: #ff4757; }
+.p-hover-actions .btn-alert-set { color: var(--primary); }
+.p-hover-actions button:hover { background: var(--dark); color: white; }
+
+/* Detalhes do Produto */
+.p-info { padding: 15px 5px; }
+
+.p-category { font-size: 10px; color: var(--gold-dark); font-weight: 700; text-transform: uppercase; }
+.p-name { font-size: 16px; margin: 8px 0; color: var(--dark); }
+
+.p-current-price { font-size: 20px; font-weight: 800; color: var(--primary); }
+.p-old-price { font-size: 13px; color: #bbb; text-decoration: line-through; margin-left: 8px; }
+
+.p-benefits {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: #28A745;
+    margin: 15px 0;
+}
+
+.btn-add-cart-premium {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: var(--dark);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-add-cart-premium:hover {
+    background: var(--primary);
+    box-shadow: 0 5px 15px rgba(255, 106, 0, 0.3);
+}
+
+/* Modal Premium */
+:root {
+    --gold: #FFD700;
+    --premium-grad: linear-gradient(135deg, #FFD700, #FFA500);
+}
+
+/* Header */
+.premium-page-header {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px 0;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 6px solid var(--gold);
+}
+
+.premium-page-header h1 i { color: var(--gold); margin-right: 10px; }
+
+/* Product Grid */
+.premium-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Modal Overlay Refinado */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 25, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.input-group {
+    display: flex;
+    background: #f8f9fa;
+    border: 2px solid #eee;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.input-group input {
+    border: none; background: transparent; outline: none;
+    width: 100%; font-size: 18px; font-weight: 700; color: var(--primary);
+}
+
+.modal-footer { display: flex; gap: 15px; margin-top: 30px; }
+
+.btn-cancel {
+    flex: 1; padding: 12px; border: none; border-radius: 12px;
+    background: #f0f0f0; cursor: pointer; font-weight: 600;
+}
+
+.btn-activate-alert {
+    flex: 2; padding: 12px; border: none; border-radius: 12px;
+    background: var(--premium-grad); color: #2D2F48;
+    cursor: pointer; font-weight: 800; box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+}
+
+.btn-primary {
+    filter: brightness(1.1);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bolder;
+}
